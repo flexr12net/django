@@ -25,21 +25,18 @@ urlpatterns = [
     path('', index),
     path('polls/<int:question_id>/', detail),
     
-    path('about-us/', views.about_hendler),
-    path('coming-soon/', views.coming_soon_hendler),
-    path('contact/', views.contact_hendler),
-    path('index/', views.index_hendler),
-    path('single-post/', views.single_post_hendler),
-    path('robots.txt', views.robots_hendler),
+    path('about-us/', views.about_handler),
+    path('coming-soon/', views.coming_soon_handler),
+    path('contact/', views.contact_handler),
+    path('index/', views.index_handler),
+    path('single-post/', views.single_post_handler),
+    path('robots.txt', views.robots_handler),
+    path('tinymce/', include('tinymce.urls')),
     
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
-
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
+    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
