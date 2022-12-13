@@ -113,6 +113,7 @@ def crawl_one(url):
 def get_link_collect():
     base_url = 'https://zozhnik.ru'
     links_collect = []
+    print('Собираем ссылки. Это долго.')
 
     with HTMLSession() as session:
         for i in range(1, 2):
