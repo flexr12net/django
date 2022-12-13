@@ -104,7 +104,6 @@ def crawl_one(url):
         article['categories'] = categories
 
     print('Создали экземпляр класса Категория')
-    print(f'Статья {article.name} готова для записи в базу данных')
 
     article, created = Article.objects.get_or_create(**article)
 
@@ -116,7 +115,7 @@ def get_link_collect():
     links_collect = []
 
     with HTMLSession() as session:
-        for i in range(1, 500):
+        for i in range(1, 2):
             response = session.get(f'{base_url}/page/{i}/')
             response.html.render(timeout=200)  # На сайте используется Lazy load
             links = response.html.xpath('//h1[@class="post-title entry-title"]/a/@href')
