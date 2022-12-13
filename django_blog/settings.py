@@ -37,7 +37,6 @@ if DEBUG:
 
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
-    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

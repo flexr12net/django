@@ -7,7 +7,7 @@ from tinymce.models import HTMLField
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
     in_menu = models.BooleanField(default=True)
     order = models.IntegerField(default=1)
 
@@ -29,7 +29,7 @@ class Author(models.Model):
 
 class Article(models.Model):
     name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
     content = HTMLField()
     short_description = HTMLField()
     main_image = models.ImageField(upload_to='images')
@@ -44,7 +44,7 @@ class Article(models.Model):
 
 class Comment(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     website = models.CharField(max_length=255)
     comment = HTMLField()
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
@@ -54,7 +54,7 @@ class Comment(models.Model):
 
 
 class Newsletter(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     is_active = models.BooleanField(default=True)
     subscription_date = models.DateTimeField(auto_now_add=True)
     unsubscription_date = models.DateTimeField(null=True, blank=True)
@@ -65,7 +65,7 @@ class Newsletter(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
     articles = models.ManyToManyField(Article)
 
     def __str__(self):
