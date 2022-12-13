@@ -123,7 +123,7 @@ def get_link_collect():
             if len(links) != 0:
                 for item in links:
                     links_collect.append(item)
-            else:dfsx
+            else:
                 break
     return links_collect
 
