@@ -2,6 +2,8 @@ from django.db import models
 
 from tinymce.models import HTMLField
 
+from string import punctuation
+
 # Create your models here.
 
 
@@ -30,6 +32,7 @@ class Author(models.Model):
 class Article(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
+    content_words_count = models.IntegerField(null=True, blank=True)
     content = HTMLField()
     short_description = HTMLField()
     main_image = models.ImageField(upload_to='images')
@@ -40,6 +43,13 @@ class Article(models.Model):
 
     def __str__(self):
         return self.name
+
+    def count_unique_words(self):
+        text = self.content.replace('<p>', "").replace('</p>', "")
+        for symbol in punctuation:
+            text.replace(symbol, '')
+        words = text.split()
+        return len(set(words))
 
 
 class Comment(models.Model):
