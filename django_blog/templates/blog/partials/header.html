@@ -1,3 +1,6 @@
+{% load static %}
+
+
 <!-- ##### Header Area Start ##### -->
 <header class="header-area">
 
@@ -39,7 +42,7 @@
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
-                    <a href="blog/index/" class="original-logo"><img src="/static/img/core-img/logo.png" alt=""></a>
+                    <a href="{% url 'homepage' %}" class="original-logo"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
                 </div>
             </div>
         </div>
@@ -75,76 +78,23 @@
                                 <li><a href="/index/">Home</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul class="dropdown">
-                                        <li><a href="/index/">Home</a></li>
-                                        <li><a href="/about-us/">About Us</a></li>
-                                        <li><a href="/single-post/">Single Post</a></li>
-                                        <li><a href="/contact/">Contact</a></li>
-                                        <li><a href="/coming-soon/">Coming Soon</a></li>
+                                        <li><a href="{% url 'homepage'%}">Home</a></li>
+                                        <li><a href="{% url 'about'%}">About Us</a></li>
+                                        <li><a href="{% url 'article' 'example'%}">Single Post</a></li>
+                                        <li><a href="{% url 'contact'%}">Contact</a></li>
+                                        <li><a href="{% url 'comming-soon'%}">Coming Soon</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Catagory</a>
+                                <li><a href="#">Blog</a>
                                     <ul class="dropdown">
-                                        <li><a href="#">Catagory 1</a></li>
-                                        <li><a href="#">Catagory 1</a></li>
-                                        <li><a href="#">Catagory 1</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Catagory 2</a></li>
-                                                <li><a href="#">Catagory 2</a></li>
-                                                <li><a href="#">Catagory 2</a>
-                                                    <ul class="dropdown">
-                                                        <li><a href="#">Catagory 3</a></li>
-                                                        <li><a href="#">Catagory 3</a></li>
-                                                        <li><a href="#">Catagory 3</a></li>
-                                                        <li><a href="#">Catagory 3</a></li>
-                                                        <li><a href="#">Catagory 3</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Catagory 2</a></li>
-                                                <li><a href="#">Catagory 2</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Catagory 1</a></li>
-                                        <li><a href="#">Catagory 1</a></li>
+                                    {% for cat in menu_categories %}
+                                        <li><a href="#">{{cat.name}}</a></li>
+                                    {% endfor %}
                                     </ul>
                                 </li>
-                                <li><a href="/about-us/">About Us</a></li>
-                                <li><a href="#">Megamenu</a>
-                                    <div class="megamenu">
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 1</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 2</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 3</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 4</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="/contact/">Contact</a></li>
+                                <li><a href="{% url 'comming-soon'%}">Coming Soon</a></li>
+                                <li><a href="{% url 'about'%}">About Us</a></li>
+                                <li><a href="{% url 'contact'%}">Contact</a></li>
                             </ul>
 
                             <!-- Search Form  -->

@@ -21,11 +21,11 @@ from django.conf.urls.static import static
 from blog import views
 
 urlpatterns = [
-    path('', views.index_handler),
-    path('about-us/', views.about_handler),
-    path('coming-soon/', views.coming_soon_handler),
-    path('contact/', views.contact_handler),
-    path('single-post/', views.single_post_handler),
+    path('', views.index_handler, name='homepage'),
+    path('about-us/', views.about_handler, name='about'),
+    path('coming-soon/', views.coming_soon_handler, name='comming-soon'),
+    path('contact/', views.contact_handler, name='contact'),
+    path('article/<slug>', views.single_post_handler, name='article'),
     path('robots.txt', views.robots_handler),
     path('tinymce/', include('tinymce.urls')),
 

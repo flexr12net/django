@@ -199,70 +199,25 @@
                             <h5 class="title">Latest Posts</h5>
 
                             <div class="widget-content">
+                            {% for article in last_articles %}
 
                                 <!-- Single Blog Post -->
                                 <div class="single-blog-post d-flex align-items-center widget-post">
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail">
-                                        <img src="/static/img/blog-img/lp1.jpg" alt="">
+                                        <img src="{{ article.main_image.url}}" alt="">
                                     </div>
                                     <!-- Post Content -->
                                     <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">Party people in the house</a></h4>
+                                        <a href="#" class="post-tag">{{ article.categories.all.0 }}</a>
+                                        <h4><a href="{% url 'article' article.slug %}" class="post-headline">{{ article.name }}</a></h4>
                                         <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
+                                            <p><a href="#">{{ article.pub_date }}</a></p>
                                         </div>
                                     </div>
                                 </div>
+                                {% endfor %}
 
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="/static/img/blog-img/lp2.jpg" alt="">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">A sunday in the park</a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="/static/img/blog-img/lp3.jpg" alt="">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">Party people in the house</a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post d-flex align-items-center widget-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="/static/img/blog-img/lp4.jpg" alt="">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <a href="#" class="post-tag">Lifestyle</a>
-                                        <h4><a href="#" class="post-headline">A sunday in the park</a></h4>
-                                        <div class="post-meta">
-                                            <p><a href="#">12 March</a></p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 

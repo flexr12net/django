@@ -1,3 +1,5 @@
+{% load static %}
+
 <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area text-center">
         <div class="container">
@@ -25,12 +27,12 @@
                                 <!-- Nav Start -->
                                 <div class="classynav">
                                     <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="{% url 'homepage'%}">Home</a></li>
+                                        <li><a href="{% url 'about'%}">About Us</a></li>
                                         <li><a href="#">Lifestyle</a></li>
                                         <li><a href="#">travel</a></li>
                                         <li><a href="#">Music</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="{% url 'contact'%}">Contact</a></li>
                                     </ul>
                                 </div>
                                 <!-- Nav End -->
@@ -59,15 +61,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- ##### Footer Area End ##### -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="/static/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
     <!-- Popper js -->
-    <script src="/static/js/popper.min.js"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
     <!-- Bootstrap js -->
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <!-- Plugins js -->
-    <script src="/static/js/plugins.js"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Active js -->
-    <script src="/static/js/active.js"></script>
+    <script src="{% static 'js/active.js' %}"></script>
 
 </body>
 

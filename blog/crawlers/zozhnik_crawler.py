@@ -17,7 +17,10 @@ def get_author_meta(author_name, url):  # Получаем изображени�
     with HTMLSession() as session:
         response = session.get(url)
         response.html.render(timeout=200)
-        bio = response.html.xpath('//div[@class="author-description"]')[0].text
+        try:
+            bio = response.html.xpath('//div[@class="author-description"]')[0].text
+        except:
+            bio = ''
         image_url = response.html.xpath('//img[contains(@class, "avatar")]/@src')[1]
         image_name = slugify(author_name)
         image_type = image_url.split('.')[-1]
@@ -50,6 +53,8 @@ def crawl_one(url):
             image_url = None
             print('Изображения нет')
         pub_date = response.html.xpath('//div[contains(@class, "post-date")]/time/@datetime')[0]
+        cats = response.html.xpath('//ul[@class="post-tags"]/li')
+        print(f' !!!!!!! {cats}')
         my_content = ''
         short_description = ''
         for element in content:
@@ -84,8 +89,6 @@ def crawl_one(url):
                     }
 
 # Получаем Категории
-        cats = response.html.xpath('//ul[@class="post-tags"]/li')
-        print(f' !!!!!!! {cats}')
     article_categories = []
     for cat in cats:
         article_categories.append(
@@ -111,23 +114,17 @@ def crawl_one(url):
         article['author'] = author
     print('Создали экземпляр класса Автор')
 
+    article, created = Article.objects.get_or_create(**article)
+
     if article_categories is not None:
         print('Категории не пустые')
         print(f'Получено {len(article_categories)} категорий')
-        categories = []
         for category in article_categories:
             print(f'Обрабатываем категорию {category}')
             cat, created = Category.objects.get_or_create(**category)
-            categories.append(cat)
-        print(categories)
-        article['categories'] = categories
-
-    print('Создали экземпляр класса Категория')
-
-    article, created = Article.objects.get_or_create(**article)
-
+            print('Создали экземпляр класса Категория')
+            article.categories.add(cat)
     print('Статья {article.name} записана в базу данных')
-
 
 def get_link_collect():
     base_url = 'https://zozhnik.ru'
