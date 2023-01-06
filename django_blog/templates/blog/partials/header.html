@@ -80,15 +80,14 @@
                                     <ul class="dropdown">
                                         <li><a href="{% url 'homepage'%}">Home</a></li>
                                         <li><a href="{% url 'about'%}">About Us</a></li>
-                                        <li><a href="{% url 'article' 'example'%}">Single Post</a></li>
                                         <li><a href="{% url 'contact'%}">Contact</a></li>
                                         <li><a href="{% url 'comming-soon'%}">Coming Soon</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Blog</a>
+                                <li><a href="{% url 'blog' %}">Blog</a>
                                     <ul class="dropdown">
                                     {% for cat in menu_categories %}
-                                        <li><a href="#">{{cat.name}}</a></li>
+                                        <li><a href="{% url 'category' cat.slug %}">{{cat.name}}</a></li>
                                     {% endfor %}
                                     </ul>
                                 </li>

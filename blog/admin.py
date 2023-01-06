@@ -16,13 +16,17 @@ def count_words(modeladmin, request, queryset):
 count_words.short_description = 'Count words in article.'
 
 
+class CommentArticleInLine(admin.TabularInline):
+    model = Comment
+
+
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ('name', 'pub_date', 'author',
                     'content_words_count', 'count_unique_words')
     list_filter = ('author', 'pub_date', 'categories')
     search_fields = ('name', 'author__name')
     actions = [count_words]
-
+    inlines = (CommentArticleInLine, )
 
 
 class CategoryAdmin(admin.ModelAdmin):

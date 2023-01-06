@@ -22,10 +22,12 @@ from blog import views
 
 urlpatterns = [
     path('', views.index_handler, name='homepage'),
-    path('about-us/', views.about_handler, name='about'),
+    path('blog/', views.blog_handler, name='blog'),
+    path('<cat_slug>', views.blog_handler, name='category'),
+    path('post/<post_slug>', views.single_post_handler, name='article'),
     path('coming-soon/', views.coming_soon_handler, name='comming-soon'),
     path('contact/', views.contact_handler, name='contact'),
-    path('article/<slug>', views.single_post_handler, name='article'),
+    path('about-us/', views.about_handler, name='about'),
     path('robots.txt', views.robots_handler),
     path('tinymce/', include('tinymce.urls')),
 

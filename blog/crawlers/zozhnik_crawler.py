@@ -99,7 +99,12 @@ def crawl_one(url):
             )
     if len(article_categories) == 0:
         print('Категории пустые')
-        article_categories = None
+        article_categories.append(
+            {
+                'name': 'no category',
+                'slug': slugify('no category')
+                }
+            )
 
     article = {
         'name': name,
@@ -116,14 +121,13 @@ def crawl_one(url):
 
     article, created = Article.objects.get_or_create(**article)
 
-    if article_categories is not None:
-        print('Категории не пустые')
-        print(f'Получено {len(article_categories)} категорий')
-        for category in article_categories:
-            print(f'Обрабатываем категорию {category}')
-            cat, created = Category.objects.get_or_create(**category)
-            print('Создали экземпляр класса Категория')
-            article.categories.add(cat)
+    print('Категории не пустые')
+    print(f'Получено {len(article_categories)} категорий')
+    for category in article_categories:
+        print(f'Обрабатываем категорию {category}')
+        cat, created = Category.objects.get_or_create(**category)
+        print('Создали экземпляр класса Категория')
+        article.categories.add(cat)
     print('Статья {article.name} записана в базу данных')
 
 def get_link_collect():

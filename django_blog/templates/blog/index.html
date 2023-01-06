@@ -13,7 +13,7 @@
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                         <div class="slide-content text-center">
-                            <div class="post-tag">
+                            <div class="tag">
                                 <a href="#" data-animation="fadeInUp">lifestyle</a>
                             </div>
                             <h2 data-animation="fadeInUp" data-delay="250ms"><a href="single-post.html">Take a look at last night’s party!</a></h2>
@@ -95,11 +95,10 @@
             </div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-9">
-            
+
             {% for article in last_articles|slice:"0:2" %}
 
                 <!-- Single Blog Area  -->
@@ -119,12 +118,12 @@
                             <!-- Blog Content -->
                             <div class="single-blog-content">
                                 <div class="line"></div>
-                                <a href="#" class="post-tag" style="display: inline-block;">{{article.categories.all.0}}</a>
+                                <a href="{% url 'category' article.categories.first.slug %}" class="post-tag" style="display: inline-block;">{{article.categories.first.name}}</a>
                                 <h4><a href="{% url 'article' article.slug %}" class="post-headline">{{article.name}}</a></h4>
                                 <p>{{article.short_description|truncatewords:25}}</p>
                                 <div class="post-meta">
-                                    <p>By <a href="#">james smith</a></p>
-                                    <p>3 comments</p>
+                                    <p>By <a href="#">{{ article.author.name }}</a></p>
+                                    <p>{{ article.comments.all.count }} Comments</p>
                                 </div>
                             </div>
                         </div>
@@ -150,12 +149,12 @@
                             <!-- Blog Content -->
                             <div class="single-blog-content mt-50">
                                 <div class="line"></div>
-                                <a href="#" class="post-tag">Lifestyle</a>
+                                <a href="{% url 'category' article.categories.first.slug %}" class="post-tag" style="display: inline-block;">{{article.categories.first.name}}</a>
                                 <h4><a href="{% url 'article' article.slug %}" class="post-headline">{{article.name}}</a></h4>
                                 <p>{{article.short_description|truncatewords:25}}</p>
                                 <div class="post-meta">
-                                    <p>By <a href="#">james smith</a></p>
-                                    <p>3 comments</p>
+                                    <p>By <a href="#">{{ article.author.name }}</a></p>
+                                    <p>{{ article.comments.all.count }} Comments</p>
                                 </div>
                             </div>
                         </div>
@@ -182,12 +181,12 @@
                                 <!-- Blog Content -->
                                 <div class="single-blog-content">
                                     <div class="line"></div>
-                                    <a href="#" class="post-tag" style="display: inline-block;">{{article.categories.all.0}}</a>
+                                    <a href="{% url 'category' article.categories.first.slug %}" class="post-tag" style="display: inline-block;">{{article.categories.first.name}}</a>
                                     <h4><a href="{% url 'article' article.slug %}" class="post-headline">{{article.name}}</a></h4>
                                     <p>{{article.short_description|truncatewords:25}}</p>
                                     <div class="post-meta">
-                                        <p>By <a href="#">james smith</a></p>
-                                        <p>3 comments</p>
+                                        <p>By <a href="#">{{ article.author.name }}</a></p>
+                                        <p>{{ article.comments.all.count }} Comments</p>
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +247,7 @@
             </div>
             <!-- Post Content -->
             <div class="post-content">
-                <a href="#" class="post-tag">{{ article.categories.all.0 }}</a>
+                <a href="{% url 'category' article.categories.first.slug %}" class="post-tag">{{ article.categories.first.name }}</a>
                 <h4><a href="{% url 'article' article.slug %}" class="post-headline">{{ article.name }}</a></h4>
                 <div class="post-meta">
                     <p><a href="#">{{ article.pub_date }}</a></p>
@@ -259,21 +258,15 @@
 
     </div>
 </div>
-
 <!-- Widget Area -->
 
                     <div class="sidebar-widget-area">
                         <h5 class="title">Tags</h5>
                         <div class="widget-content">
                             <ul class="tags">
-                                <li><a href="#">design</a></li>
-                                <li><a href="#">fashion</a></li>
-                                <li><a href="#">travel</a></li>
-                                <li><a href="#">music</a></li>
-                                <li><a href="#">party</a></li>
-                                <li><a href="#">video</a></li>
-                                <li><a href="#">photography</a></li>
-                                <li><a href="#">adventure</a></li>
+                            {% for cat in menu_categories %}
+                                <li><a href="{% url 'category' cat.slug %}">{{cat.name}}</a></li>
+                            {% endfor %}
                             </ul>
                         </div>
                     </div>
